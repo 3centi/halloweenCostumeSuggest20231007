@@ -43,8 +43,7 @@ def app_jp(ask_chatgpt_count):
         st.header('ChatGPTにきく 🤖')
 
         ## chatgpt のAPIキー.
-        # api_key = st.secrets['APIKEY']
-        api_key = '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'
+        api_key = st.secrets['APIKEY']
 
         if 'sug_count' not in st.session_state:
             st.session_state.sug_count = ask_chatgpt_count
