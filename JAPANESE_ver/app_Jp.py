@@ -9,7 +9,7 @@ def app_jp(ask_chatgpt_count):
 
     # タイトル.
     st.title('ハロウィンの仮装を提案します！🎃')
-    st.caption('ver0.0.2')
+    st.caption('ver0.0.3')
     st.caption('<a href="https://marked-jaborosa-40b.notion.site/6858ff8ef2ac437b856905448122dafa?pvs=4">使い方</a>、<a href="https://forms.gle/PrZb4MCu8uY3J5n48">フィードバック</a>', unsafe_allow_html=True)
 
     #タブに分割
@@ -43,7 +43,8 @@ def app_jp(ask_chatgpt_count):
         st.header('ChatGPTにきく 🤖')
 
         ## chatgpt のAPIキー.
-        api_key = st.secrets['APIKEY']
+        # api_key = st.secrets['APIKEY']
+        api_key = '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'
 
         if 'sug_count' not in st.session_state:
             st.session_state.sug_count = ask_chatgpt_count
@@ -66,10 +67,10 @@ def app_jp(ask_chatgpt_count):
         if st.session_state.sug_count <= 3:
             if st.button('提案してもらう！(時間がかかります)'):
                 
-                if not st.session_state.sug:
-                    st.write('少々お待ちください。回答が返ってくるまで20~30秒ほどかかります 😞')
+                #if not st.session_state.sug:
+                    #st.write('少々お待ちください。回答が返ってくるまで20~30秒ほどかかります 😞')
 
-                time.sleep(1)
+                #time.sleep(1)
 
                 if st.session_state.gender == '':
                     gender = None
@@ -86,7 +87,11 @@ def app_jp(ask_chatgpt_count):
                 )
                 try:
                     sug_c.make_content()
-                    st.session_state.sug = sug_c.request_chatgpt()
+
+                    with st.spinner('少々お待ちください。回答が返ってくるまで20~30秒ほどかかります 😞'):
+                        time.sleep(1)
+                        st.session_state.sug = sug_c.request_chatgpt()
+                    
                     st.session_state.sug = f'ChatGPT 🤖からの回答です！: {st.session_state.sug}'
                     st.session_state.sug_count += 1
                 except:

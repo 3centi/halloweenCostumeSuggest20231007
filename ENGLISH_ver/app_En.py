@@ -8,7 +8,7 @@ def app_en(ask_chatgpt_count):
     
     # タイトル.
     st.title('Halloween Costume Ideas！🎃')
-    st.caption('ver0.0.2')
+    st.caption('ver0.0.3')
     st.caption('<a href="https://forms.gle/PrZb4MCu8uY3J5n48">Feedback</a>', unsafe_allow_html=True)
 
     #タブに分割
@@ -42,7 +42,8 @@ def app_en(ask_chatgpt_count):
         st.header('Ask ChatGPT 🤖')
 
         ## chatgpt のAPIキー.
-        api_key = st.secrets['APIKEY']
+        # api_key = st.secrets['APIKEY']
+        api_key = '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'
 
         if 'sug_count' not in st.session_state:
             st.session_state.sug_count = ask_chatgpt_count
@@ -65,10 +66,10 @@ def app_en(ask_chatgpt_count):
         if st.session_state.sug_count <= 3:
             if st.button('Let’s Ask！(It will take 30 sec)'):
                 
-                if not st.session_state.sug:
-                    st.write('Please wait...It will take about 30 seconds 😞')
+                #if not st.session_state.sug:
+                    #st.write('Please wait...It will take about 30 seconds 😞')
 
-                time.sleep(1)
+                #time.sleep(1)
 
                 if st.session_state.gender == '':
                     gender = None
@@ -85,7 +86,11 @@ def app_en(ask_chatgpt_count):
                 )
                 try:
                     sug_c.make_content()
-                    st.session_state.sug = sug_c.request_chatgpt()
+
+                    with st.spinner('Please wait...It will take about 30 seconds 😞'):
+                        time.sleep(1)
+                        st.session_state.sug = sug_c.request_chatgpt()
+
                     st.session_state.sug = f'The answer from ChatGPT🤖！: {st.session_state.sug}'
                     st.session_state.sug_count += 1
                 except:

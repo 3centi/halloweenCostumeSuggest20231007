@@ -11,6 +11,7 @@ if st.session_state.langTo == 'English version':
     if st.button(st.session_state.langTo):
         app_En.app_en(st.session_state.ask_chatgpt_count)
         st.session_state.langTo = '日本語版'
+        st.experimental_rerun()
     else:
         app_Jp.app_jp(st.session_state.ask_chatgpt_count)
 
@@ -19,5 +20,6 @@ else:
     if st.button(st.session_state.langTo):
         app_Jp.app_jp(st.session_state.ask_chatgpt_count)
         st.session_state.langTo = 'English version'
+        st.experimental_rerun()
     else:
         app_En.app_en(st.session_state.ask_chatgpt_count)
