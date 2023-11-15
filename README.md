@@ -1,6 +1,6 @@
 # ハロウィンの仮装を提案します！🎃
 
-App URL: https://halloweencostumesuggest20231007.streamlit.app/
+アプリの URL: https://halloweencostumesuggest20231007.streamlit.app/
 
 var. 0.0.3
 
